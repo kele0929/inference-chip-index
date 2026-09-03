@@ -1,0 +1,12 @@
+================================================
+MLPerf Results Summary
+================================================
+SUT name : FixtureSUT
+Scenario : Offline
+Mode     : PerformanceOnly
+Samples per second: 1.0
+Tokens per second: 100
+Result is : VALID
+  Min duration satisfied : Yes
+  Min queries satisfied : Yes
+  Early stopping satisfied: Yes

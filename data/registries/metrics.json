@@ -1,0 +1,40 @@
+{
+  "tokens_per_second": {
+    "id": "tokens_per_second",
+    "displayName": "Tokens per second",
+    "canonicalUnit": "tokens/s",
+    "winningDirection": "higher",
+    "allowedWorkloads": ["llama3.1-8b", "gpt-oss-120b", "deepseek-r1"],
+    "allowedScenarios": ["Offline"],
+    "upstreamLogKeys": ["Tokens per second"],
+    "validityRequirements": [
+      "Result is : VALID",
+      "Min duration satisfied : Yes",
+      "Min queries satisfied : Yes"
+    ],
+    "latencyRequirements": [],
+    "derivationAllowed": true,
+    "isPrimaryOfficial": true
+  },
+  "completed_tokens_per_second": {
+    "id": "completed_tokens_per_second",
+    "displayName": "Completed tokens per second",
+    "canonicalUnit": "tokens/s",
+    "winningDirection": "higher",
+    "allowedWorkloads": ["llama3.1-8b", "gpt-oss-120b", "deepseek-r1"],
+    "allowedScenarios": ["Server", "Interactive"],
+    "upstreamLogKeys": ["Completed tokens per second"],
+    "validityRequirements": [
+      "Result is : VALID",
+      "Performance constraints satisfied : Yes",
+      "Min duration satisfied : Yes",
+      "Min queries satisfied : Yes"
+    ],
+    "latencyRequirements": [
+      "TTFT Early Stopping Result: Run successful",
+      "TPOT Early Stopping Result: Run successful"
+    ],
+    "derivationAllowed": true,
+    "isPrimaryOfficial": true
+  }
+}

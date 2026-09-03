@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --paper: #f4efe4;
+  --ink: #1c1914;
+  --muted: #5c564c;
+  --rule: #d7cfc0;
+  --accent: #8f1d14;
+  --ok: #1f4d38;
+  --warn: #8a5a12;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(143, 29, 20, 0.05), transparent 36%),
+    var(--paper);
+  font-family: "IBM Plex Sans", "Source Sans 3", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.serif {
+  font-family: "Source Serif 4", "Iowan Old Style", serif;
+}
+
+code,
+pre,
+.mono,
+table {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+table.data th,
+table.data td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.data th {
+  position: sticky;
+  top: 0;
+  background: #efe8d8;
+  font-weight: 600;
+}
+
+table.data td.num,
+table.data th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.state {
+  border: 1px solid var(--rule);
+  padding: 0.9rem 1rem;
+  background: #efe8d8;
+}
+
+.state[data-tone="warn"] {
+  border-color: #c9a15b;
+}
+
+.state[data-tone="bad"] {
+  border-color: #c07a74;
+}
+
+.state[data-tone="ok"] {
+  border-color: #7ea48d;
+}

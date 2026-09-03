@@ -1,0 +1,19 @@
+export const SOURCE_REPOSITORY = "https://github.com/mlcommons/inference_results_v6.0";
+export const SOURCE_COMMIT = "4d3916ac9cf474b679cdfcf492d43a0559418ad1";
+export const RELEASE = "v6.0";
+export const DIVISION = "closed";
+export const ALLOWED_WORKLOADS = ["llama3.1-8b", "gpt-oss-120b", "deepseek-r1"] as const;
+export const ALLOWED_SCENARIOS = ["Offline", "Server", "Interactive"] as const;
+export const DATASET_VERSION = "v1";
+export const NORMALIZER_VERSION = "1.0.0";
+export const MAX_RANK_RESPONSE_BYTES = 1_048_576;
+export const DEFAULT_PAGE_LIMIT = 25;
+export const MAX_PAGE_LIMIT = 50;
+export const PREVIEW_LIMIT = 5;
+export const FRESHNESS_POLICY_DAYS = 120;
+export const RANK_PRICE = "0.02";
+export const COMPARE_PRICE = "0.03";
+export const PAYMENTS_NETWORK = "eip155:84532";
+
+export type Workload = (typeof ALLOWED_WORKLOADS)[number];
+export type Scenario = (typeof ALLOWED_SCENARIOS)[number];
