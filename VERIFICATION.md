@@ -72,11 +72,9 @@ When `PAYMENTS_FACILITATOR_URL`, `PAYMENTS_NETWORK=eip155:84532`, and `PAYMENTS_
 
 ## Public preview
 
-**Durable workers.dev blocker:** no Cloudflare credentials in this environment (`bunx wrangler whoami` → not authenticated; no `CLOUDFLARE_*` env vars). OpenNext bundle succeeds. Wrangler deploy cannot run.
+**Vercel (verified 2026-09-03):** https://temporary-sonic-fluorine-exqm5bc.vercel.app
 
-**Ephemeral session preview (verified 2026-09-03):** https://phys-kitchen-hands-mission.trycloudflare.com
-
-`cloudflared tunnel --url http://127.0.0.1:3000` (v2026.8.3) in front of `bun run start`. Curl with a normal browser User-Agent:
+Anonymous `npx vercel deploy --temporary --yes --prebuilt` after a local `next build`. `next.config.ts` skips `initOpenNextCloudflareForDev` on production / Vercel so the OpenNext Wrangler hook does not break the Next build. Lucid routes stay App Router handlers.
 
 | Path | Status |
 | --- | --- |
@@ -85,7 +83,9 @@ When `PAYMENTS_FACILITATOR_URL`, `PAYMENTS_NETWORK=eip155:84532`, and `PAYMENTS_
 | `POST .../preview-inference-chips/invoke` | 200 |
 | `POST .../rank-inference-chips/invoke` with official slice ID | **503** `payment_configuration_error` |
 
-This Quick Tunnel has no uptime guarantee and ends when the agent VM stops. It is not a 7-day workers.dev URL.
+CLI expiry: **2026-09-03T23:57:27Z**. Claim to keep: https://vercel.com/claim-deployment?code=f51b8e85-097f-4d77-a47d-b28a8c659a7a
+
+**~7-day unattended preview blocker:** no `VERCEL_TOKEN`, Netlify PAT, or `CLOUDFLARE_API_TOKEN` on this VM. Anonymous Vercel and Netlify both require a claim within one hour. No workers.dev URL was invented.
 
 Operator credentials for a durable preview (do not commit):
 
@@ -99,6 +99,6 @@ Expected workers.dev hostname after a successful deploy: `https://inference-chip
 
 ## Unmet acceptance items
 
-- Durable public preview (workers.dev, review + 7 days) is blocked on `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`. An ephemeral trycloudflare.com tunnel was brought up for this session only.
+- Unattended ~7-day preview is blocked: the live Vercel URL is anonymous and expires ~1 hour unless claimed. No Vercel/Netlify/Cloudflare account token is on this VM.
 - Live x402 402 offer headers on Base Sepolia were not exercised (no payment config). Fail-closed behavior was verified.
 - OASF document is mounted but returns Lucid’s official not-found until an identity extension is added (out of the required HTTP+payments composition).

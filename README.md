@@ -8,9 +8,10 @@ This is a public Next.js site plus a commercial Lucid Agents API that turns offi
 - Source: [mlcommons/inference_results_v6.0](https://github.com/mlcommons/inference_results_v6.0) commit `4d3916ac9cf474b679cdfcf492d43a0559418ad1`
 - Repository: https://github.com/kele0929/inference-chip-index
 - Default branch: `main`
-- Public preview (ephemeral Quick Tunnel, verified live from this agent VM): https://phys-kitchen-hands-mission.trycloudflare.com
-- That hostname is a Cloudflare Quick Tunnel to `127.0.0.1:3000`. It dies when this VM or `cloudflared` stops and **does not** satisfy a workers.dev preview that stays up through review + 7 days.
-- Durable workers.dev deploy is still blocked: this environment has no `CLOUDFLARE_API_TOKEN` or `CLOUDFLARE_ACCOUNT_ID`. OpenNext build succeeds; Wrangler is unauthenticated. Operator must provide those two values (do not commit them), then `bun run deploy`. See `docs/DEPLOYMENT.md` and `VERIFICATION.md`.
+- Public preview (Vercel, verified live): https://temporary-sonic-fluorine-exqm5bc.vercel.app
+- That is an anonymous Vercel Next.js deployment of this App Router + Lucid app. Pages and `/api/agent` were curl-checked from this VM.
+- It expires at **2026-09-03T23:57:27Z** (about one hour after deploy) unless claimed. Claim (browser login, do not paste a token into chat): https://vercel.com/claim-deployment?code=f51b8e85-097f-4d77-a47d-b28a8c659a7a
+- No Cloudflare / Vercel / Netlify account token is present on this VM, so there is no unattended ~7-day workers.dev or Hobby project. See `docs/DEPLOYMENT.md`.
 
 ## Stack
 

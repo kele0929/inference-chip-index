@@ -7,10 +7,10 @@ Primary target remains Cloudflare Workers through OpenNext. Public review previe
 `next.config.ts` calls `initOpenNextCloudflareForDev()` only for non-production local `next dev` (and never when `VERCEL` or `NETLIFY` is set). Production `next build` on Vercel is plain Next.js. Lucid routes stay App Router handlers.
 
 ```bash
-npx vercel deploy --temporary --yes
+npx vercel deploy --temporary --yes --prebuilt
 ```
 
-`--temporary` creates a claimable deployment without `vercel login`. Do not commit `.vercel/` or tokens. Record the real hostname in README only after curl proves it serves this app.
+Anonymous Vercel deploys must upload prebuilt output (`--prebuilt`), not a source archive. They create a claimable `*.vercel.app` hostname without `vercel login`. Unclaimed deployments expire in about one hour. Do not commit `.vercel/` or tokens. Record the real hostname in README only after curl proves it serves this app.
 
 ## Local
 
