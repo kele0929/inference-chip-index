@@ -161,6 +161,14 @@ export default async function LeaderboardPage({
               No comparable results for this exact slice and filter set.
             </p>
           ) : (
+            <>
+          <p className="mt-4 text-sm text-[var(--muted)]">
+            {ranked?.total ?? filteredRows.length} comparable rows · vendors on this page:{" "}
+            {[...new Set(filteredRows.map((row) => row.vendor))].sort().join(", ") || "none"}. Larger
+            submitted systems can outrank smaller ones on the official metric; that is not a
+            universal chip ranking.
+          </p>
+
             <div className="table-wrap mt-6">
               <table className="data">
                 <caption className="sr-only">Exact-slice leaderboard</caption>
@@ -200,6 +208,7 @@ export default async function LeaderboardPage({
                 </tbody>
               </table>
             </div>
+            </>
           )}
           {snapshot.quarantine.some((item) => item.reasons.length > 0) ? (
             <p className="state mt-6">

@@ -8,7 +8,7 @@ This is a public Next.js site plus a commercial Lucid Agents API that turns offi
 - Source: [mlcommons/inference_results_v6.0](https://github.com/mlcommons/inference_results_v6.0) commit `4d3916ac9cf474b679cdfcf492d43a0559418ad1`
 - Repository: https://github.com/kele0929/inference-chip-index
 - Default branch: `main`
-- Public preview: see `VERIFICATION.md` (live workers.dev URL or the exact deploy blocker)
+- Public preview: **not published**. This environment has no `CLOUDFLARE_API_TOKEN`. OpenNext build succeeds; Wrangler deploy fails closed until that token and `CLOUDFLARE_ACCOUNT_ID` are set. See `VERIFICATION.md`.
 
 ## Stack
 
