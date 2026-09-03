@@ -4,7 +4,7 @@ Primary target remains Cloudflare Workers through OpenNext. Public review previe
 
 ## Vercel preview (no Cloudflare token)
 
-`next.config.ts` calls `initOpenNextCloudflareForDev()` only when `VERCEL` and `NETLIFY` are unset. That keeps local Wrangler-backed `next dev` working and lets `next build` run on Vercel.
+`next.config.ts` calls `initOpenNextCloudflareForDev()` only for non-production local `next dev` (and never when `VERCEL` or `NETLIFY` is set). Production `next build` on Vercel is plain Next.js. Lucid routes stay App Router handlers.
 
 ```bash
 npx vercel deploy --temporary --yes
