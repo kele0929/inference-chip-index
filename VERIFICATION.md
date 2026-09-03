@@ -87,15 +87,22 @@ CLI expiry: **2026-09-03T23:57:27Z**. Claim to keep: https://vercel.com/claim-de
 
 **~7-day unattended preview blocker:** no `VERCEL_TOKEN`, Netlify PAT, or `CLOUDFLARE_API_TOKEN` on this VM. Anonymous Vercel and Netlify both require a claim within one hour. No workers.dev URL was invented.
 
-Operator credentials for a durable preview (do not commit):
+To keep the live Vercel URL past one hour, open the claim link above (browser login). Do not paste tokens into chat.
+
+Alternatively, a durable project needs one of (do not commit):
 
 ```bash
-export CLOUDFLARE_API_TOKEN=...   # Cloudflare API token from the "Edit Cloudflare Workers" template
-export CLOUDFLARE_ACCOUNT_ID=...  # 32-char account id from the Cloudflare dashboard
+# Vercel Hobby (keeps the Next.js preview)
+export VERCEL_TOKEN=...
+npx vercel deploy --yes --prebuilt --prod
+
+# or Cloudflare Workers (original target)
+export CLOUDFLARE_API_TOKEN=...   # "Edit Cloudflare Workers" template
+export CLOUDFLARE_ACCOUNT_ID=...  # 32-char account id
 bun run deploy
 ```
 
-Expected workers.dev hostname after a successful deploy: `https://inference-chip-index.<account>.workers.dev` (exact hostname is assigned by Cloudflare; do not invent it).
+Do not invent a workers.dev or vercel.app hostname before deploy succeeds.
 
 ## Unmet acceptance items
 
