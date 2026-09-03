@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-
-initOpenNextCloudflareForDev();
+// OpenNext wrangler hook is local Cloudflare Workers dev only.
+// Vercel/Netlify must not start it or the Next build can fail.
+if (!process.env.VERCEL && !process.env.NETLIFY) {
+  const { initOpenNextCloudflareForDev } = await import("@opennextjs/cloudflare");
+  initOpenNextCloudflareForDev();
+}

@@ -8,6 +8,7 @@ coverage/
 .output/
 .open-next/
 .wrangler/
+.vercel/
 .tanstack/
 *.log
 dev.vars

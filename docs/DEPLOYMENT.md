@@ -1,6 +1,16 @@
 # Deployment runbook
 
-Target: Cloudflare Workers through OpenNext.
+Primary target remains Cloudflare Workers through OpenNext. Public review preview can also be a Vercel Next.js deployment (same App Router + Lucid routes; no Workers runtime).
+
+## Vercel preview (no Cloudflare token)
+
+`next.config.ts` calls `initOpenNextCloudflareForDev()` only when `VERCEL` and `NETLIFY` are unset. That keeps local Wrangler-backed `next dev` working and lets `next build` run on Vercel.
+
+```bash
+npx vercel deploy --temporary --yes
+```
+
+`--temporary` creates a claimable deployment without `vercel login`. Do not commit `.vercel/` or tokens. Record the real hostname in README only after curl proves it serves this app.
 
 ## Local
 
@@ -41,4 +51,4 @@ When Workers credentials are absent, a Cloudflare Quick Tunnel can front a local
 cloudflared tunnel --url http://127.0.0.1:3000
 ```
 
-That hostname dies with the process/VM and does not replace `bun run deploy`. Record whichever URL is actually live in `VERIFICATION.md`.
+That hostname dies with the process/VM and does not replace a Vercel or Workers URL. Record whichever URL is actually live in `VERIFICATION.md`.

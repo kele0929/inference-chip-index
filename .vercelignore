@@ -1,0 +1,11 @@
+data/source
+data/fixtures
+data/pipeline-work
+.open-next
+.wrangler
+.output
+coverage
+tests
+*.log
+.dev.vars
+dev.vars
