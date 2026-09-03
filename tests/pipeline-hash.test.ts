@@ -1,10 +1,19 @@
 import { describe, expect, test } from "bun:test";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { sha256Bytes, stableStringify } from "../lib/hash";
 import { buildSnapshot } from "../pipeline/generate";
 import { validateSnapshot } from "../pipeline/validate";
 
 describe("pipeline hashes", () => {
+  test("fixture output hash is committed for clean-checkout CI", () => {
+    expect(existsSync("data/fixtures/expected-output.sha256")).toBe(true);
+    expect(existsSync("data/fixtures/output/snapshot.sha256")).toBe(true);
+    expect(existsSync("data/fixtures/output/snapshot.json")).toBe(true);
+    const pinned = readFileSync("data/fixtures/expected-output.sha256", "utf8").trim();
+    const output = readFileSync("data/fixtures/output/snapshot.sha256", "utf8").trim();
+    expect(output).toBe(pinned);
+  });
+
   test("fixture mode reproduces the checked-in expected hash", async () => {
     const snapshot = await buildSnapshot({ mode: "fixture", sourceRoot: "data/fixtures/pack" });
     validateSnapshot(snapshot);

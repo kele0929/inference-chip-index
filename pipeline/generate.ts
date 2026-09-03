@@ -436,7 +436,19 @@ export async function writeGenerated(snapshot: DatasetSnapshot, directory: strin
 }
 
 export async function assertUnchanged(snapshot: DatasetSnapshot, directory: string): Promise<void> {
-  const expected = (await readFile(path.join(directory, "snapshot.sha256"), "utf8")).trim();
+  const hashPath = path.join(directory, "snapshot.sha256");
+  let expected: string;
+  try {
+    expected = (await readFile(hashPath, "utf8")).trim();
+  } catch (error) {
+    const code = error && typeof error === "object" && "code" in error ? String(error.code) : "";
+    if (code === "ENOENT") {
+      throw new Error(
+        `Missing committed hash file ${hashPath}. Fixture and full-source outputs must be checked in (not gitignored) so CI can assertUnchanged on a clean checkout.`,
+      );
+    }
+    throw error;
+  }
   const actual = sha256Bytes(`${stableStringify(snapshot)}\n`);
   if (expected !== actual) {
     throw new Error(`Generated snapshot hash mismatch in ${directory}: expected ${expected}, got ${actual}`);

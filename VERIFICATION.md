@@ -13,8 +13,8 @@ Commands below were run in this repository. Results are factual, not estimated.
 
 | Mode | SHA-256 |
 | --- | --- |
-| Fixture | `9ecc04c56b4e7bb160cfce88747e436d210e4e7a92cdcf17414408df3bfef403` |
-| Full-source snapshot | `70df2af2679b92a0b6b9ea7833ff23496e8c05394bb56b9e2cab6fc39931aae0` |
+| Fixture | `68e9053d5f1cf4e5349e09dcc5b28b7e70608b31133831de14584c46e47c1e07` |
+| Full-source snapshot | `5de2d52e830a5a01ad214000aa6c950dcff181e12aaf737fffd6d8c9095a4fd7` |
 
 - Published official results: 141
 - Comparison slices: 9

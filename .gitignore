@@ -14,5 +14,4 @@ dev.vars
 .dev.vars
 cloudflare-env.d.ts
 data/pipeline-work/
-data/fixtures/output/
 tsconfig.tsbuildinfo

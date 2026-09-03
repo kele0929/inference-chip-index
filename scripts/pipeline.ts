@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { sha256Bytes, stableStringify } from "../lib/hash";
 import { buildSnapshot, writeGenerated, assertUnchanged } from "../pipeline/generate";
@@ -22,8 +22,17 @@ const snapshot = await buildSnapshot({ mode, sourceRoot });
 validateSnapshot(snapshot);
 
 if (check) {
+  const actual = sha256Bytes(`${stableStringify(snapshot)}\n`);
+  if (mode === "fixture") {
+    const pinned = (await readFile(path.resolve("data/fixtures/expected-output.sha256"), "utf8")).trim();
+    if (pinned !== actual) {
+      throw new Error(
+        `Fixture hash mismatch versus data/fixtures/expected-output.sha256: expected ${pinned}, got ${actual}`,
+      );
+    }
+  }
   await assertUnchanged(snapshot, outputRoot);
-  console.log(`${mode} hash check passed ${snapshot.manifest.snapshotSha256}`);
+  console.log(`${mode} hash check passed ${actual}`);
   process.exit(0);
 }
 

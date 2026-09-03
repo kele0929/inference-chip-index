@@ -4,7 +4,7 @@ Automated pull requests and auto-publication are out of scope. Reviewers promote
 
 ## Fixture mode
 
-Parses `data/fixtures/pack` and must reproduce `data/fixtures/expected-output.sha256`.
+Parses `data/fixtures/pack` and must reproduce both `data/fixtures/expected-output.sha256` and `data/fixtures/output/snapshot.sha256`. Those files are committed (not gitignored) so `bun run pipeline:check` works on a clean checkout.
 
 ```bash
 bun run pipeline:fixture
