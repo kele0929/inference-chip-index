@@ -43,7 +43,7 @@ bun run deploy
 | --- | --- |
 | `bun run pipeline:check` | passed (both hashes) |
 | `bun run type-check` | passed |
-| `bun test` | 23 pass, 0 fail |
+| `bun test` | 24 pass, 0 fail |
 | `bun run build` | passed (Next.js 16.0.10) |
 | `bun run deploy` | OpenNext bundle succeeded; Wrangler stopped with missing `CLOUDFLARE_API_TOKEN` |
 
@@ -72,13 +72,26 @@ When `PAYMENTS_FACILITATOR_URL`, `PAYMENTS_NETWORK=eip155:84532`, and `PAYMENTS_
 
 ## Public preview
 
-**Blocker:** no Cloudflare credentials in this environment (`wrangler whoami` → not authenticated; deploy requires `CLOUDFLARE_API_TOKEN`).
+**Durable workers.dev blocker:** no Cloudflare credentials in this environment (`bunx wrangler whoami` → not authenticated; no `CLOUDFLARE_*` env vars). OpenNext bundle succeeds. Wrangler deploy cannot run.
 
-The app is buildable. Reviewer deploy:
+**Ephemeral session preview (verified 2026-09-03):** https://phys-kitchen-hands-mission.trycloudflare.com
+
+`cloudflared tunnel --url http://127.0.0.1:3000` (v2026.8.3) in front of `bun run start`. Curl with a normal browser User-Agent:
+
+| Path | Status |
+| --- | --- |
+| `/`, `/leaderboard`, `/methodology`, `/api-docs`, `/updates` | 200 |
+| `GET /api/agent/health` | 200 `{"ok":true,"version":"1.0.0"}` |
+| `POST .../preview-inference-chips/invoke` | 200 |
+| `POST .../rank-inference-chips/invoke` with official slice ID | **503** `payment_configuration_error` |
+
+This Quick Tunnel has no uptime guarantee and ends when the agent VM stops. It is not a 7-day workers.dev URL.
+
+Operator credentials for a durable preview (do not commit):
 
 ```bash
-export CLOUDFLARE_API_TOKEN=...
-export CLOUDFLARE_ACCOUNT_ID=...
+export CLOUDFLARE_API_TOKEN=...   # Cloudflare API token from the "Edit Cloudflare Workers" template
+export CLOUDFLARE_ACCOUNT_ID=...  # 32-char account id from the Cloudflare dashboard
 bun run deploy
 ```
 
@@ -86,6 +99,6 @@ Expected workers.dev hostname after a successful deploy: `https://inference-chip
 
 ## Unmet acceptance items
 
-- Public preview URL is not live because Cloudflare API token/account id are missing.
+- Durable public preview (workers.dev, review + 7 days) is blocked on `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`. An ephemeral trycloudflare.com tunnel was brought up for this session only.
 - Live x402 402 offer headers on Base Sepolia were not exercised (no payment config). Fail-closed behavior was verified.
 - OASF document is mounted but returns Lucid’s official not-found until an identity extension is added (out of the required HTTP+payments composition).

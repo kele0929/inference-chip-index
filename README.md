@@ -8,7 +8,9 @@ This is a public Next.js site plus a commercial Lucid Agents API that turns offi
 - Source: [mlcommons/inference_results_v6.0](https://github.com/mlcommons/inference_results_v6.0) commit `4d3916ac9cf474b679cdfcf492d43a0559418ad1`
 - Repository: https://github.com/kele0929/inference-chip-index
 - Default branch: `main`
-- Public preview: **not published**. This environment has no `CLOUDFLARE_API_TOKEN`. OpenNext build succeeds; Wrangler deploy fails closed until that token and `CLOUDFLARE_ACCOUNT_ID` are set. See `VERIFICATION.md`.
+- Public preview (ephemeral Quick Tunnel, verified live from this agent VM): https://phys-kitchen-hands-mission.trycloudflare.com
+- That hostname is a Cloudflare Quick Tunnel to `127.0.0.1:3000`. It dies when this VM or `cloudflared` stops and **does not** satisfy a workers.dev preview that stays up through review + 7 days.
+- Durable workers.dev deploy is still blocked: this environment has no `CLOUDFLARE_API_TOKEN` or `CLOUDFLARE_ACCOUNT_ID`. OpenNext build succeeds; Wrangler is unauthenticated. Operator must provide those two values (do not commit them), then `bun run deploy`. See `docs/DEPLOYMENT.md` and `VERIFICATION.md`.
 
 ## Stack
 
