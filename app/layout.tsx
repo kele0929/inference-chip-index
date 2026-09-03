@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { datasetStatus } from "@/lib/dataset";
 import "./globals.css";
 
@@ -42,9 +43,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
             <nav aria-label="Primary" className="flex flex-wrap gap-4 text-sm">
               {links.map(([label, href]) => (
-                <a key={href} href={href} className="underline-offset-4 hover:underline">
+                <Link key={href} href={href} className="underline-offset-4 hover:underline">
                   {label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { datasetStatus, previewChips } from "@/lib/dataset";
 
 export default function HomePage() {
@@ -15,12 +16,12 @@ export default function HomePage() {
         leads Llama 3.1 8B Offline is not thereby the fastest chip.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
-        <a className="bg-[var(--ink)] px-4 py-2 text-sm text-[var(--paper)]" href="/leaderboard">
+        <Link className="bg-[var(--ink)] px-4 py-2 text-sm text-[var(--paper)]" href="/leaderboard">
           Open the leaderboard
-        </a>
-        <a className="border border-[var(--ink)] px-4 py-2 text-sm" href="/methodology">
+        </Link>
+        <Link className="border border-[var(--ink)] px-4 py-2 text-sm" href="/methodology">
           Read the methodology
-        </a>
+        </Link>
       </div>
       <section className="mt-14 grid gap-4 md:grid-cols-3">
         <article className="border border-[var(--rule)] p-4">
